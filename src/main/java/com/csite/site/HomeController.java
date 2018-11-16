@@ -1,4 +1,4 @@
-package com.example.test;
+package com.csite.site;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Controller;
