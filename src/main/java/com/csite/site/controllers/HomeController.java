@@ -1,4 +1,4 @@
-package com.csite.site;
+package com.csite.site.controllers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Controller;
