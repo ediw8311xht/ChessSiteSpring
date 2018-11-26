@@ -1,6 +1,6 @@
-function getIdChess(){
-
-    var information = {"id": $("#idInput").value};
+function getIdChess(event){
+    event.preventDefault();
+    var information = {"id": $("#idInput").val()};
     console.log(information["id"]);
     /*
     $.ajax({
@@ -21,10 +21,9 @@ function getIdChess(){
         }
     });
     */
-});
+}
 
 $(document).ready(function(){
-
-
+    $("#idSubmit").on("click", getIdChess());
 
 });
