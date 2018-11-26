@@ -3,8 +3,8 @@
 $(document).ready(function() {
     $("body").append("<p>WORKKS JS SHITT</p>");
     console.log("HERE");
-    var information = {"id": "dafwfpunk"};
-    
+    var information = {"id": "testingabcd"};
+
     $.ajax({
         type : "POST",
         contentType : "application/json",
