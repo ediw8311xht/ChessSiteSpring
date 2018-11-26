@@ -1,5 +1,6 @@
 # ChessSiteSpring
 created by Max Ballard.
+
 This is my final project for my AP Computer Science class.
 Backend is in Java, using Spring Boot, Spring Boot MVC, Maven to compile, JDBC for database querying, and Postgresql.
 It is hosted on a Heroku server.
