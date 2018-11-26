@@ -38,4 +38,11 @@ public class ChessController {
         System.out.println("HERE");
         return game;
     }
+
+    @RequestMapping(value = "/getChessById", method = RequestMethod.POST, produces = "application/json")
+    public @ResponseBody Game getChessGame(@RequestBody Game game) {
+        System.out.println(game.getId());
+        Game g = gameRepo.findOne(game.getId());
+        return g;
+    }
 }

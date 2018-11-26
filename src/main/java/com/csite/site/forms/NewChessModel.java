@@ -1,4 +1,4 @@
-package com.csite.site.models;
+package com.csite.site.forms;
 
 
 public class NewChessModel {
@@ -7,7 +7,7 @@ public class NewChessModel {
     NewChessModel(String id) {
         this.id = id;
     }
-    
+
     public String getId() {
         return this.id;
     }

@@ -3,7 +3,7 @@ function getIdChess(event){
     var information = {"id": $("#idInput").val()};
     console.log(information["id"]);
     $.ajax({
-        type : "GET",
+        type : "POST",
         contentType : "application/json",
         url : "/ajax/getChessById",
         data : JSON.stringify(information),

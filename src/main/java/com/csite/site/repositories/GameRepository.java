@@ -11,7 +11,7 @@ import com.csite.site.engine.Game;
 
 @Repository
 public class GameRepository {
-    
+
     @Autowired
     private JdbcTemplate jdbc;
 
