@@ -2,9 +2,8 @@ function getIdChess(event){
     event.preventDefault();
     var information = {"id": $("#idInput").val()};
     console.log(information["id"]);
-    /*
     $.ajax({
-        type : "POST",
+        type : "GET",
         contentType : "application/json",
         url : "/ajax/getChessById",
         data : JSON.stringify(information),
@@ -20,10 +19,9 @@ function getIdChess(event){
             console.log("FINISHED.tttt");
         }
     });
-    */
 }
 
 $(document).ready(function(){
-    $("#idSubmit").on("click", getIdChess());
+    $("#idSubmit").on("click", getIdChess);
 
 });
