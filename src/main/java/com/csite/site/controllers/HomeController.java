@@ -8,6 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
     @GetMapping("/")
     public String home() {
+        return "home";
+    }
+
+    @GetMapping("/makeGame")
+    public String makeGame() {
+        return "chess";
+    }
+
+    @GetMapping("/getGame")
+    public String getGame() {
         return "chess_get_id";
     }
 }
