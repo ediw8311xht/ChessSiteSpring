@@ -20,6 +20,9 @@ public class GameRepository {
     }
 
     public Game save(Game game) {
+        if (findOne(game.getId()) != null) {
+            return null;
+        }
         jdbc.update("INSERT INTO Game (id, board, turn) VALUES (?, ?, ?)",
                     game.getId(), game.getBoard(), game.getTurn());
         return game;
@@ -30,7 +33,13 @@ public class GameRepository {
     }
 
     private Game mapRowToGame(ResultSet rs, int rowNum) throws SQLException {
-        return new Game(rs.getString("id"), rs.getString("board"), rs.getInt("turn"));
+        if (rs != null) {
+            return new Game(rs.getString("id"), rs.getString("board"), rs.getInt("turn"));
+        }
+        else {
+            return null;
+        }
+
     }
 
 
