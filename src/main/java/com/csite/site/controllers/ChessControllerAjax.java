@@ -36,7 +36,6 @@ public class ChessControllerAjax {
     @RequestMapping(value = "/getChessById", method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody Game getChessGame(@RequestBody Game game) {
         Game g = gameRepo.findOne(game.getId());
-        System.out.println(g);
         return g;
     }
 }
