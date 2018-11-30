@@ -3,6 +3,7 @@ package com.csite.site.controllers;
 import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.csite.site.engine.Game;
 
@@ -23,8 +24,8 @@ public class HomeController {
         return "chess_get_id";
     }
 
-    @PostMapping("/Game")
-    public String Game(@ModelAttribute Game game) {
+    @GetMapping("/Game")
+    public String Game(@RequestParam("board") String board, @RequestParam("id") String id) {
         return "Game";
     }
 }

@@ -30,7 +30,7 @@ public class ChessController{
     @RequestMapping(value = "/makeNewChess", method = RequestMethod.POST)
     public String makeNewChessGame(Model model) {
 
-        return "redirect":
+        return "Game";
     }
 
     @RequestMapping(value = "/getChessById", method = RequestMethod.POST)
