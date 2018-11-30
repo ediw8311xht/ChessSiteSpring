@@ -1,5 +1,6 @@
 package com.csite.site.repositories;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,12 @@ public class GameRepository {
     }
 
     public Game findOne(String id) {
-        return jdbc.queryForObject("SELECT id, board, turn FROM Game WHERE id = ?", this::mapRowToGame, id);
+        try {
+            return jdbc.queryForObject("SELECT id, board, turn FROM Game WHERE id = ?", this::mapRowToGame, id);
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println("No result found for that query.");
+            return null;
+        }
     }
 
     private Game mapRowToGame(ResultSet rs, int rowNum) throws SQLException {
