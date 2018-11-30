@@ -13,7 +13,7 @@ public class HomeController {
 
     @GetMapping("/makeGame")
     public String makeGame() {
-        return "chess";
+        return "MakeGame";
     }
 
     @GetMapping("/getGame")
