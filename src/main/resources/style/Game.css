@@ -1,0 +1,33 @@
+
+
+.c-piece {
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+  text-align: center;
+  line-height: 82px;
+  font-size: 40px;
+  font-family: monospace;
+  font-color: black;
+}
+
+.c-row {
+  padding: 0px;
+  margin: 0px;
+}
+
+
+.dark-brown-background {
+  background-color: #CC5803;
+}
+
+.light-brown-background {
+  background-color: #FFC15E;
+}
+
+#chessBoard {
+  margin: 0 auto;
+  width: 640px;
+  height: 640px;
+  border: solid #1F1300 20px;
+}

@@ -29,7 +29,8 @@ public class ChessController{
 
     @RequestMapping(value = "/makeNewChess", method = RequestMethod.POST)
     public String makeNewChessGame(Model model) {
-        return "Game";
+
+        return "redirect":
     }
 
     @RequestMapping(value = "/getChessById", method = RequestMethod.POST)
