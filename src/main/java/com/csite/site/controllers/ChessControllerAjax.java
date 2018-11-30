@@ -18,27 +18,25 @@ import com.csite.site.engine.Game;
 import com.csite.site.repositories.GameRepository;
 
 @Controller
-@RequestMapping("/")
-public class ChessController{
+@RequestMapping("/ajax")
+public class ChessControllerAjax {
 
     private GameRepository gameRepo;
 
-    public ChessController(GameRepository gameRepo) {
+    public ChessControllerAjax(GameRepository gameRepo) {
         this.gameRepo = gameRepo;
     }
 
-    @RequestMapping(value = "/makeNewChess", method = RequestMethod.POST)
-    public String makeNewChessGame(Model model) {
-        return "Game";
+    @RequestMapping(value = "/makeNewChess", method = RequestMethod.POST, produces = "application/json")
+    public @ResponseBody Game makeNewChessGame(@RequestBody Game game) {
+        System.out.println(gameRepo.save(game));
+        return game;
     }
 
-    @RequestMapping(value = "/getChessById", method = RequestMethod.POST)
-    public String getChessGame(@RequestBody Game game) {
-        System.out.println(game.getId());
+    @RequestMapping(value = "/getChessById", method = RequestMethod.POST, produces = "application/json")
+    public @ResponseBody Game getChessGame(@RequestBody Game game) {
         Game g = gameRepo.findOne(game.getId());
-        if (g == null) {
-            return "chess_get_id";
-        }
-        return "Game";
+        System.out.println(g);
+        return g;
     }
 }

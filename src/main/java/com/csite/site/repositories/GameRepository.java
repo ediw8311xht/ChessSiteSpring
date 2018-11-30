@@ -43,10 +43,11 @@ public class GameRepository {
     }
 
     private Game mapRowToGame(ResultSet rs, int rowNum) throws SQLException {
-        if (rs != null) {
+        if (!rs.isBeforeFirst()) {
             return new Game(rs.getString("id"), rs.getString("board"), rs.getInt("turn"));
         }
         else {
+            System.out.println("No results found");
             return null;
         }
 
