@@ -29,7 +29,7 @@ public class ChessControllerAjax {
 
     @RequestMapping(value = "/makeNewChess", method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody Game makeNewChessGame(@RequestBody Game game) {
-        System.out.println(gameRepo.save(game));
+        gameRepo.save(game);
         return game;
     }
 

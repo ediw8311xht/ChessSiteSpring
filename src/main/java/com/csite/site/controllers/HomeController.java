@@ -25,7 +25,7 @@ public class HomeController {
     }
 
     @GetMapping("/Game")
-    public String Game(@RequestParam("board") String board, @RequestParam("id") String id) {
+    public String Game(@RequestParam("id") String id) {
         return "Game";
     }
 }

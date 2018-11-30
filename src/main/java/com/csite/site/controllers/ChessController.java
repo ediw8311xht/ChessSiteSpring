@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.csite.site.engine.Game;
 import com.csite.site.repositories.GameRepository;
@@ -28,9 +29,9 @@ public class ChessController{
     }
 
     @RequestMapping(value = "/makeNewChess", method = RequestMethod.POST)
-    public String makeNewChessGame(Model model) {
-
-        return "Game";
+    public ModelAndView makeNewChessGame() {
+        String id = "make this into an actual id for new game.";
+        return new ModelAndView("redirect:/Game?" + id);
     }
 
     @RequestMapping(value = "/getChessById", method = RequestMethod.POST)
