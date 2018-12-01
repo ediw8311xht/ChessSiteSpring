@@ -33,6 +33,12 @@ function write_board(string_board) {
 }
 
 $(document).ready( function() {
+    var information = {"id": $("#chessId").text()};
+
+    console.log("9af");
+    console.log(information["id"]);
+    console.log("9af");
+
     $.ajax({
         type : "POST",
         contentType : "application/json",
