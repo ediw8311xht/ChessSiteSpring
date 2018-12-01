@@ -30,7 +30,7 @@ public class GameRepository {
                 new_id += valid_char[(int) Math.floor(Math.random() * valid_char.length)];
             }
         } while (findOne(new_id) != null);
-        
+
         return new_id;
     }
 
@@ -41,6 +41,10 @@ public class GameRepository {
         jdbc.update("INSERT INTO Game (id, board, turn) VALUES (?, ?, ?)",
                     game.getId(), game.getBoard(), game.getTurn());
         return game;
+    }
+
+    public void updateBoard(String id, String board) {
+        jdbc.update("UPDATE game SET board='" + board + "' WHERE id='" + id + "';");
     }
 
     public Game findOne(String id) {
