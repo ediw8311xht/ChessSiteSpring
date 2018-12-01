@@ -1,7 +1,7 @@
 
 function create_board_spots() {
   $("#chessBoard").empty();
-  for (let i = 0; i < 8; i++) {
+  for (let i = 7; i > -1; i--) {
     $("#chessBoard").append("<div class='c-row' id='chess-row-" + i + "' ></div>");
     for (let j = 0; j < 8; j++) {
       if ((i + j) % 2 == 0) {
@@ -20,9 +20,9 @@ function write_board(string_board) {
     let b_arr = string_board.split("\n");
     for (let i = 0; i < 8; i++) { b_arr[i] = b_arr[i].split(""); }
 
-    for (let i = 7; i > -1; i--) {
-        for (let j = 7; j > -1; j--) {
-            if (b_arr[i][j] == " ") {
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            if (b_arr[i][j] == " " || b_arr[i][j] == ".") {
               $("#chess-piece-" + i + "-" + j).html("&nbsp;");
             }
             else {
@@ -47,7 +47,7 @@ $(document).ready( function() {
         dataType : "json",
         timeout : 10000,
         success : function(data) {
-            console.log(data);
+            write_board(data["board"]);
         },
         error : function(data) {
             console.log("ERROR BIG FELLA.");
