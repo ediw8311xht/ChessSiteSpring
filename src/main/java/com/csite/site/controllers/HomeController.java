@@ -23,9 +23,4 @@ public class HomeController {
     public String getGame() {
         return "chess_get_id";
     }
-
-    @GetMapping("/Game")
-    public String Game(@RequestParam("id") String id) {
-        return "Game";
-    }
 }

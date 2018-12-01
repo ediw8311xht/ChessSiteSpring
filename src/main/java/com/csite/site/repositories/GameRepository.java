@@ -24,9 +24,13 @@ public class GameRepository {
     public String makeRandomId() {
         String new_id = "";
         String valid_char[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
-        for (int i = 0; i < 15; i++) {
-            new_id += valid_char[(int) Math.floor(Math.random() * valid_char.length)];
-        }
+
+        do {
+            for (int i = 0; i < 15; i++) {
+                new_id += valid_char[(int) Math.floor(Math.random() * valid_char.length)];
+            }
+        } while (findOne(new_id) != null);
+        
         return new_id;
     }
 

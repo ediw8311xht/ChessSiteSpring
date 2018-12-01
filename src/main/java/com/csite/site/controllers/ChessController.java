@@ -30,8 +30,10 @@ public class ChessController{
 
     @RequestMapping(value = "/makeNewChess", method = RequestMethod.POST)
     public ModelAndView makeNewChessGame() {
-        String id = "make this into an actual id for new game.";
-        return new ModelAndView("redirect:/Game?" + id);
+        String id = this.gameRepo.makeRandomId();
+        Game new_game = new Game(id);
+        this.gameRepo.save(new_game);
+        return new ModelAndView("redirect:/Game?id=" + id);
     }
 
     @RequestMapping(value = "/getChessById", method = RequestMethod.POST)
@@ -42,5 +44,17 @@ public class ChessController{
             return "chess_get_id";
         }
         return "Game";
+    }
+
+    @GetMapping("/Game")
+    public String Game(@RequestParam("id") String id, Model model) {
+        Game g = this.gameRepo.findOne(id);
+        if (g == null) {
+            return "Error";
+        }
+        else {
+            model.addAttribute("game", g);
+            return "Game";
+        }
     }
 }
