@@ -34,8 +34,11 @@ function write_board(string_board) {
 }
 
 $(document).ready( function() {
-  console.log("555");
-  create_board_spots();
-  write_board("RNBQKBNR\nPPPPPPPP\n        \n        \n        \n        \npppppppp\nrnbqkbnr");
-  $("#chess-piece-0-0");
+    /*<![CDATA[*/
+    var mmg = /*[[${game.board}]]*/'default';
+    console.log(mmg);
+    create_board_spots();
+    write_board("RNBQKBNR\nPPPPPPPP\n        \n        \n        \n        \npppppppp\nrnbqkbnr");
+    $("#chess-piece-0-0");
+    /*]]>*/
 });
