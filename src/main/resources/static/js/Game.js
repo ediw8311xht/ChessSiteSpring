@@ -22,7 +22,6 @@ function write_board(string_board) {
 
     for (let i = 7; i > -1; i--) {
         for (let j = 7; j > -1; j--) {
-            console.log(b_arr[i][j]);
             if (b_arr[i][j] == " ") {
               $("#chess-piece-" + i + "-" + j).html("&nbsp;");
             }
@@ -35,7 +34,6 @@ function write_board(string_board) {
 
 $(document).ready( function() {
     /*<![CDATA[*/
-    var mmg = /*[[${game.board}]]*/'default';
     console.log(mmg);
     create_board_spots();
     write_board("RNBQKBNR\nPPPPPPPP\n        \n        \n        \n        \npppppppp\nrnbqkbnr");
