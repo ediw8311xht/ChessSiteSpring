@@ -33,10 +33,24 @@ function write_board(string_board) {
 }
 
 $(document).ready( function() {
-    /*<![CDATA[*/
-    console.log(mmg);
+    $.ajax({
+        type : "POST",
+        contentType : "application/json",
+        url : "/ajax/getChessById",
+        data : JSON.stringify(information),
+        dataType : "json",
+        timeout : 10000,
+        success : function(data) {
+            console.log(data);
+        },
+        error : function(data) {
+            console.log("ERROR BIG FELLA.");
+        },
+        done : function(e) {
+            console.log("FINISHED.tttt");
+        }
+    });
+
     create_board_spots();
-    write_board("RNBQKBNR\nPPPPPPPP\n        \n        \n        \n        \npppppppp\nrnbqkbnr");
-    $("#chess-piece-0-0");
-    /*]]>*/
+    //write_board("RNBQKBNR\nPPPPPPPP\n        \n        \n        \n        \npppppppp\nrnbqkbnr");
 });
