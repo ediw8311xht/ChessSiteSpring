@@ -28,8 +28,13 @@ public class ChessController{
         this.gameRepo = gameRepo;
     }
 
+    @RequestMapping(value = "/makeNewChess", method = RequestMethod.GET)
+    public String makeNewChessGameGET()
+    {
+        return "MakeGame";
+    }
     @RequestMapping(value = "/makeNewChess", method = RequestMethod.POST)
-    public ModelAndView makeNewChessGame() {
+    public ModelAndView makeNewChessGamePOST() {
         String id = this.gameRepo.makeRandomId();
         Game new_game = new Game(id);
         this.gameRepo.save(new_game);
