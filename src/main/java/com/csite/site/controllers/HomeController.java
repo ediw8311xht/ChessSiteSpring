@@ -3,6 +3,9 @@ package com.csite.site.controllers;
 import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.csite.site.engine.Game;
 
 @Controller
 public class HomeController {
@@ -13,11 +16,16 @@ public class HomeController {
 
     @GetMapping("/makeGame")
     public String makeGame() {
-        return "chess";
+        return "MakeGame";
     }
 
     @GetMapping("/getGame")
     public String getGame() {
         return "chess_get_id";
+    }
+
+    @GetMapping("/Game")
+    public String Game(@RequestParam("id") String id) {
+        return "Game";
     }
 }
