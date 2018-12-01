@@ -49,14 +49,13 @@ public class ChessController{
     }
 
     @RequestMapping(value = "/getChessById", method = RequestMethod.POST)
-    public ModelAndView getChessGamePOST(@RequestBody Game game) {
-        System.out.println(game.getId());
-        Game g = gameRepo.findOne(game.getId());
+    public ModelAndView getChessGamePOST(@RequestParam("id") String id) {
+        Game g = gameRepo.findOne(id);
         if (g == null) {
             return new ModelAndView("redirect:/Error");
         }
         else {
-            return new ModelAndView("redirect:/Game?id=" + game.getId());
+            return new ModelAndView("redirect:/Game?id=" + id);
         }
     }
 
