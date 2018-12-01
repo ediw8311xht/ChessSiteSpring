@@ -33,6 +33,13 @@ public class ChessController{
     {
         return "MakeGame";
     }
+
+    @RequestMapping(value = "/getChessById", method = RequestMethod.GET)
+    public String getChessGameGET()
+    {
+        return "chess_get_id";
+    }
+
     @RequestMapping(value = "/makeNewChess", method = RequestMethod.POST)
     public ModelAndView makeNewChessGamePOST() {
         String id = this.gameRepo.makeRandomId();
@@ -42,13 +49,15 @@ public class ChessController{
     }
 
     @RequestMapping(value = "/getChessById", method = RequestMethod.POST)
-    public String getChessGame(@RequestBody Game game) {
+    public ModelAndView getChessGamePOST(@RequestBody Game game) {
         System.out.println(game.getId());
         Game g = gameRepo.findOne(game.getId());
         if (g == null) {
-            return "chess_get_id";
+            return new ModelAndView("redirect:/Error");
         }
-        return "Game";
+        else {
+            return new ModelAndView("redirect:/Game?id=" + game.getId());
+        }
     }
 
     @GetMapping("/Game")
