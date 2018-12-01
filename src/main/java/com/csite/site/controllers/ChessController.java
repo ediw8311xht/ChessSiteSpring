@@ -28,19 +28,19 @@ public class ChessController{
         this.gameRepo = gameRepo;
     }
 
-    @RequestMapping(value = "/makeNewChess", method = RequestMethod.GET)
+    @GetMapping("/makeNewChess")
     public String makeNewChessGameGET()
     {
         return "MakeGame";
     }
 
-    @RequestMapping(value = "/getChessById", method = RequestMethod.GET)
+    @GetMapping("/getChessById")
     public String getChessGameGET()
     {
         return "chess_get_id";
     }
 
-    @RequestMapping(value = "/makeNewChess", method = RequestMethod.POST)
+    @PostMapping("/makeNewChess")
     public ModelAndView makeNewChessGamePOST() {
         String id = this.gameRepo.makeRandomId();
         Game new_game = new Game(id);
@@ -48,7 +48,7 @@ public class ChessController{
         return new ModelAndView("redirect:/Game?id=" + id);
     }
 
-    @RequestMapping(value = "/getChessById", method = RequestMethod.POST)
+    @PostMapping("/getChessById")
     public ModelAndView getChessGamePOST(@RequestParam("id") String id) {
         Game g = gameRepo.findOne(id);
         if (g == null) {

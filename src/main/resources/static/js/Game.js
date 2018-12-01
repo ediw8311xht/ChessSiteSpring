@@ -32,8 +32,67 @@ function write_board(string_board) {
     }
 }
 
+function get_board() {
+    let board = "";
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            board += $("#chess-piece-" + i + "-" + j).text();
+        }
+        if (i == 7) {
+            return board;
+        }
+        board += "\n";
+    }
+}
+
+
+
+
+var last_touch = false;
+var current_touch = false;
+var information = {};
+
+function on_submit_move() {
+    $.get("/ajax/movePiece?id=" + information["id"] +
+          "&move1=" + last_touch[0].toString() + last_touch[1].toString() +
+          "&move2=" + current_touch[0].toString() + current_touch[1].toString(),
+          function(data) { console.log(data); }
+      );
+}
+
+function on_cancel_move() {
+
+}
+
+function click_move(event) {
+    console.log(last_touch);
+    let id_arr = $(event.currentTarget).attr("id").split("-");
+    if (last_touch) {
+        if (last_touch[0] === id_arr[2] && last_touch[1] === id_arr[3]) {
+            console.log(5555);
+            last_touch = false;
+        }
+        else {
+            console.log($("#chess-piece-" + last_touch[0] + "-" + last_touch[1]).text());
+            $("#" + $(event.currentTarget).attr("id")).html($("#chess-piece-" + last_touch[0] + "-" + last_touch[1]).html());
+            $("#chess-piece-" + last_touch[0] + "-" + last_touch[1]).html("&nbsp;");
+            current_touch = [id_arr[2], id_arr[3]];
+            $(".c-piece").off();
+            $("#submitMove").one("click", on_submit_move);
+            //$("#cancelMove").one("click", on_cancel_move);
+        }
+    }
+    else {
+      last_touch = [id_arr[2], id_arr[3], $(event.currentTarget).text()];
+    }
+}
+
+function start_game() {
+    $(".c-piece").on("click", click_move);
+}
+
 $(document).ready( function() {
-    var information = {"id": $("#chessId").text()};
+    information["id"] = $("#chessId").text();
 
     console.log("9af");
     console.log(information["id"]);
@@ -48,6 +107,7 @@ $(document).ready( function() {
         timeout : 10000,
         success : function(data) {
             write_board(data["board"]);
+            start_game();
         },
         error : function(data) {
             console.log("ERROR BIG FELLA.");

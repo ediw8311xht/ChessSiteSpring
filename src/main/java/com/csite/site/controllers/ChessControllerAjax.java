@@ -38,4 +38,11 @@ public class ChessControllerAjax {
         Game g = gameRepo.findOne(game.getId());
         return g;
     }
+
+    @RequestMapping(value = "/movePiece", method = RequestMethod.GET, produces = "application/json")
+    public boolean movePiece(@RequestParam("id") String id, @RequestParam("move1") String move1, @RequestParam("move2") String move2) {
+        System.out.println(move1);
+        System.out.println(move2);
+        return true;
+    }
 }
