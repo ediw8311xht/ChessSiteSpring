@@ -43,11 +43,17 @@ public class ChessControllerAjax {
     public @ResponseBody boolean movePiece(@RequestParam("id") String id,
                                            @RequestParam("move1") String move1,
                                            @RequestParam("move2") String move2) {
-        int im1[] = {Integer.valueOf(move1.split("")[0]), Integer.valueOf(move1.split("")[1])};
-        int im2[] = {Integer.valueOf(move2.split("")[0]), Integer.valueOf(move2.split("")[1])};
-        Game g = this.gameRepo.findOne(id);
+        int im1[] = {Integer.parseInt(move1.split("")[0]), Integer.parseInt(move1.split("")[1])};
+        int im2[] = {Integer.parseInt(move2.split("")[0]), Integer.parseInt(move2.split("")[1])};
 
-        if (g.move_piece(im1[0], im1[1], im2[0], im2[1])) {
+        System.out.println(move1.split("")[0]);
+        System.out.println(id);
+        System.out.println(move2);
+
+        Game g = this.gameRepo.findOne(id);
+        System.out.println(g);
+        if (g.move_piece(1, 4, 3, 4)) {
+            System.out.println("HERE");
             this.gameRepo.updateGame(g);
             return true;
         }
