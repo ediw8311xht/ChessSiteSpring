@@ -29,12 +29,13 @@ public class Game {
 
     public String getBoard() {
         String g = "";
-        for (int i = 7; i > -1; i--) {
+        System.out.println(board[7][7].to_string());
+        for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (board[i][j] == null)  { g += "."; }
                 else                      { g += board[i][j].to_string(); }
             }
-            if (i > 0) { g += "\n"; }
+            g += "\n";
         }
         return g;
     }
