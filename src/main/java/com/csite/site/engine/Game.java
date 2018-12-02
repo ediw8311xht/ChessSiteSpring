@@ -29,7 +29,7 @@ public class Game {
 
     public String getBoard() {
         String g = "";
-        for (int i = 7; i > -1; i--) {
+        for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (board[i][j] == null)  { g += "."; }
                 else                      { g += board[i][j].to_string(); }
