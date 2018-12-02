@@ -51,9 +51,7 @@ public class ChessControllerAjax {
         System.out.println(move2);
 
         Game g = this.gameRepo.findOne(id);
-        System.out.println(g);
-        if (g.move_piece(1, 4, 3, 4)) {
-            System.out.println("HERE");
+        if (g.move_piece(im1[0], im1[1], im2[0], im2[1])) {
             this.gameRepo.updateGame(g);
             return true;
         }
