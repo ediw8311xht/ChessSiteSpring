@@ -40,9 +40,20 @@ public class ChessControllerAjax {
     }
 
     @RequestMapping(value = "/movePiece", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody boolean movePiece(@RequestParam("id") String id, @RequestParam("move1") String move1, @RequestParam("move2") String move2) {
-        System.out.println(move1);
-        System.out.println(move2);
-        return true;
+    public @ResponseBody boolean movePiece(@RequestParam("id") String id,
+                                           @RequestParam("move1") String move1,
+                                           @RequestParam("move2") String move2) {
+        int im1[] = {Integer.valueOf(move1.split("")[0]), Integer.valueOf(move1.split("")[1])};
+        int im2[] = {Integer.valueOf(move2.split("")[0]), Integer.valueOf(move2.split("")[1])};
+        Game g = this.gameRepo.findOne(id);
+
+        if (g.move_piece(im1[0], im1[1], im2[0], im2[1])) {
+            this.gameRepo.updateGame(g);
+            return true;
+        }
+
+        else {
+            return false;
+        }
     }
 }

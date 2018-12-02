@@ -52,16 +52,31 @@ var last_touch = false;
 var current_touch = false;
 var information = {};
 
+
+
+function reverse_move() {
+    $("#chess-piece-" + last_touch[0] + "-" + last_touch[1]).html(last_touch[2]);
+    $("#chess-piece-" + current_touch[0] + "-" + current_touch[1]).html(current_touch[2]);
+}
+
 function on_submit_move() {
     $.get("/ajax/movePiece?id=" + information["id"] +
           "&move1=" + last_touch[0].toString() + last_touch[1].toString() +
           "&move2=" + current_touch[0].toString() + current_touch[1].toString(),
-          function(data) { console.log(data); }
-      );
+          function(data) {
+              submit_cancel_toggle("off");
+              if (!data) {
+                  reverse_move();
+              }
+              start_game();
+          }
+     );
 }
 
 function on_cancel_move() {
-
+    submit_cancel_toggle("off");
+    reverse_move();
+    start_game();
 }
 
 function click_move(event) {
@@ -69,25 +84,38 @@ function click_move(event) {
     let id_arr = $(event.currentTarget).attr("id").split("-");
     if (last_touch) {
         if (last_touch[0] === id_arr[2] && last_touch[1] === id_arr[3]) {
-            console.log(5555);
             last_touch = false;
         }
         else {
             console.log($("#chess-piece-" + last_touch[0] + "-" + last_touch[1]).text());
+            current_touch = [id_arr[2], id_arr[3], $(event.currentTarget).html()];
             $("#" + $(event.currentTarget).attr("id")).html($("#chess-piece-" + last_touch[0] + "-" + last_touch[1]).html());
             $("#chess-piece-" + last_touch[0] + "-" + last_touch[1]).html("&nbsp;");
-            current_touch = [id_arr[2], id_arr[3]];
             $(".c-piece").off();
-            $("#submitMove").one("click", on_submit_move);
-            //$("#cancelMove").one("click", on_cancel_move);
+            submit_cancel_toggle("on");
         }
     }
     else {
-      last_touch = [id_arr[2], id_arr[3], $(event.currentTarget).text()];
+      last_touch = [id_arr[2], id_arr[3], $(event.currentTarget).html()];
+    }
+}
+
+function submit_cancel_toggle(on_off) {
+    if (on_off === "on") {
+        $(document.body).append("<button id='submitMove'>Submit</button>");
+        $(document.body).append("<button id='cancelMove'>Cancel</button>");
+        $("#submitMove").one("click", on_submit_move);
+        $("#cancelMove").one("click", on_cancel_move);
+    }
+    else if (on_off === "off") {
+        $("#submitMove").remove();
+        $("#cancelMove").remove();
     }
 }
 
 function start_game() {
+    last_touch = false;
+    current_touch = false;
     $(".c-piece").on("click", click_move);
 }
 
