@@ -35,7 +35,7 @@ public class Game {
                 if (board[i][j] == null)  { g += "."; }
                 else                      { g += board[i][j].to_string(); }
             }
-            g += "\n";
+            if (i <= 6) { g += "\n"; }
         }
         return g;
     }

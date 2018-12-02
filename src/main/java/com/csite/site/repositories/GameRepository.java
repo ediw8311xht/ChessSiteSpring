@@ -44,7 +44,7 @@ public class GameRepository {
     }
 
     public void updateGame(Game game) {
-        jdbc.update("UPDATE game SET board='" + game.getBoard() + "' turn=" + Integer.toString(game.getTurn()) + " WHERE id='" + game.getId() + "';");
+        jdbc.update("UPDATE game SET board='" + game.getBoard() + "', turn=" + Integer.toString(game.getTurn()) + " WHERE id='" + game.getId() + "';");
     }
 
     public Game findOne(String id) {
