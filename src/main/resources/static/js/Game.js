@@ -1,5 +1,17 @@
 
+
+/*
+    Format of id for <div> chess piece in board:
+
+    #chess-piece-[y-cord]-[x-cord].
+
+    i.e. #chess-piece-0-5
+
+*/
+
+
 function create_board_spots() {
+    //Creates actual board and piece spaces for later use by board.
     $("#chessBoard").empty();
     for (let i = 7; i > -1; i--) {
         $("#chessBoard").append("<div class='c-row' id='chess-row-" + i + "' ></div>");
@@ -16,7 +28,7 @@ function create_board_spots() {
 }
 
 function write_board(string_board) {
-    //let map = {"K": }
+    //Writes pieces in string_board into the html board.
     let b_arr = string_board.split("\n");
     for (let i = 0; i < 8; i++) { b_arr[i] = b_arr[i].split(""); }
 
@@ -33,6 +45,7 @@ function write_board(string_board) {
 }
 
 function get_board() {
+    //Gets pieces in board and returns as string.
     let board = "";
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
@@ -48,24 +61,32 @@ function get_board() {
 
 
 
-var last_touch = false;
-var current_touch = false;
-var information = {};
+var last_touch = false; //This is the value of piece position that is first clicked on along with value.
+var current_touch = false;  //Value of piece that is clicked on next along with value.
+var information = {};   //Holds id of Game gotten from element #chessId.
 
 
 
 function reverse_move() {
+    //Reverses move on board for move saved in last_touch and current_touch
     $("#chess-piece-" + last_touch[0] + "-" + last_touch[1]).html(last_touch[2]);
     $("#chess-piece-" + current_touch[0] + "-" + current_touch[1]).html(current_touch[2]);
 }
 
 function on_submit_move() {
+    //When submit button is pressed, this function is called.
+    //This function sends get request to server.
+    //It passes three parameters, "id", "move1", and "move2".
+    //"id" is the id of the game and "move1" is the starting position of move and "move2" is ending position of move.
     $.get("/ajax/movePiece?id=" + information["id"] +
           "&move1=" + last_touch[0].toString() + last_touch[1].toString() +
           "&move2=" + current_touch[0].toString() + current_touch[1].toString(),
           function(data) {
               submit_cancel_toggle("off");
               if (!data) {
+                  //If the get request returns false or null, then the move is invalid
+                  //so the move is reversed and the user is alerted that move is invalid.
+                  alert("Invalid Move.");
                   reverse_move();
               }
               start_game();
@@ -80,8 +101,10 @@ function on_cancel_move() {
 }
 
 function click_move(event) {
-    console.log(last_touch);
+
+    //This array holds position of piece clicked on in position 2 for y cordinate and position 3 for x cordinate.
     let id_arr = $(event.currentTarget).attr("id").split("-");
+
     if (last_touch) {
         if (last_touch[0] === id_arr[2] && last_touch[1] === id_arr[3]) {
             last_touch = false;
@@ -101,6 +124,7 @@ function click_move(event) {
 }
 
 function submit_cancel_toggle(on_off) {
+    //This function either adds or removes submitMove button and cancelMove button.
     if (on_off === "on") {
         $(document.body).append("<button id='submitMove'>Submit</button>");
         $(document.body).append("<button id='cancelMove'>Cancel</button>");
@@ -114,18 +138,22 @@ function submit_cancel_toggle(on_off) {
 }
 
 function start_game() {
+    //Resets variables that are used to store move positions,
+    //and attachs function to click event on chess pieces inside chessBoard.
     last_touch = false;
     current_touch = false;
     $(".c-piece").on("click", click_move);
 }
 
+
+//Waits till document is ready before starting.
+//Operates as main function.
 $(document).ready( function() {
     information["id"] = $("#chessId").text();
 
-    console.log("9af");
-    console.log(information["id"]);
-    console.log("9af");
 
+    //This sends a post request to server getting the board
+    //as a string.
     $.ajax({
         type : "POST",
         contentType : "application/json",
@@ -134,17 +162,22 @@ $(document).ready( function() {
         dataType : "json",
         timeout : 10000,
         success : function(data) {
+            //Writes pieces into the board with data returned from post request.
             write_board(data["board"]);
+            //Starts game, attaches click events.
             start_game();
         },
         error : function(data) {
-            console.log("ERROR BIG FELLA.");
+            console.log("ERROR Board not found.");
         },
         done : function(e) {
-            console.log("FINISHED.tttt");
+            console.log("FINISHED.");
         }
     });
 
+    //Initilizes the board with html elements, called after
+    //ajax, because $.ajax is an asynchronous call, so it works in the background while
+    //the board is created so program gets board contents faster.
+    //Note: This function does not initilize actual pieces, "write_board(string)" does that.
     create_board_spots();
-    //write_board("RNBQKBNR\nPPPPPPPP\n        \n        \n        \n        \npppppppp\nrnbqkbnr");
 });
