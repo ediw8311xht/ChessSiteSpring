@@ -1,18 +1,18 @@
 
 function create_board_spots() {
-  $("#chessBoard").empty();
-  for (let i = 7; i > -1; i--) {
-    $("#chessBoard").append("<div class='c-row' id='chess-row-" + i + "' ></div>");
-    for (let j = 0; j < 8; j++) {
-      if ((i + j) % 2 == 0) {
-        $("#chess-row-" + i).append("<div class='c-piece light-brown-background' id='chess-piece-" + i + "-" + j + "' >&nbsp;</div>");
-      }
-      else {
-        $("#chess-row-" + i).append("<div class='c-piece dark-brown-background' id='chess-piece-" + i + "-" + j + "' >&nbsp;</div>");
-      }
+    $("#chessBoard").empty();
+    for (let i = 7; i > -1; i--) {
+        $("#chessBoard").append("<div class='c-row' id='chess-row-" + i + "' ></div>");
+        for (let j = 0; j < 8; j++) {
+            if ((i + j) % 2 == 0) {
+                $("#chess-row-" + i).append("<div class='c-piece light-brown-background' id='chess-piece-" + i + "-" + j + "' >&nbsp;</div>");
+            }
+            else {
+                $("#chess-row-" + i).append("<div class='c-piece dark-brown-background' id='chess-piece-" + i + "-" + j + "' >&nbsp;</div>");
+            }
 
+        }
     }
-  }
 }
 
 function write_board(string_board) {
