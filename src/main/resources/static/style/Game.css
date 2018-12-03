@@ -9,7 +9,7 @@
   font-size: 40px;
   font-family: monospace;
   font-color: black;
-  cursor: select;
+  cursor: pointer;
 }
 
 .c-row {
