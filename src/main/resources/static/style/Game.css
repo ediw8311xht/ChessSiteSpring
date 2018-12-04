@@ -1,6 +1,7 @@
 
 
 .c-piece {
+<<<<<<< HEAD
   width: 80px;
   height: 80px;
   display: inline-block;
@@ -10,25 +11,60 @@
   font-family: monospace;
   font-color: black;
   cursor: pointer;
+=======
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    text-align: center;
+    line-height: 82px;
+    font-size: 40px;
+    font-family: monospace;
+    font-color: black;
+    cursor: select;
+>>>>>>> 137d6db6fcc1e59dd8c8f04700453bdea82b0501
 }
 
 .c-row {
-  padding: 0px;
-  margin: 0px;
+    padding: 0px;
+    margin: 0px;
 }
 
 
 .dark-brown-background {
-  background-color: #CC5803;
+    background-color: #CC5803;
 }
 
 .light-brown-background {
-  background-color: #FFC15E;
+    background-color: #FFC15E;
 }
 
 #chessBoard {
-  margin: 0 auto;
-  width: 640px;
-  height: 640px;
-  border: solid #1F1300 20px;
+    margin: 0 auto;
+    width: 640px;
+    height: 640px;
+    border: solid #1F1300 20px;
+}
+
+#submitMove {
+    background-color: rgb(38, 255, 74);
+    border: none;
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 300px;
+    height: 50px;
+    font-size: 30px;
+}
+
+#cancelMove {
+    background-color: rgb(255, 0, 0);
+    border: none;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 300px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.highlight-this {
+    background-color: red;
 }
