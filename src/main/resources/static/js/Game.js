@@ -9,6 +9,9 @@
 
 */
 
+fuction game_over(color) {
+    return 0;
+}
 
 function create_board_spots() {
     //Creates actual board and piece spaces for later use by board.
@@ -89,6 +92,12 @@ function on_submit_move() {
                   alert("Invalid Move.");
                   reverse_move();
               }
+              else {
+                  if (data["finished"]) {
+                      game_over(data["finished"]);
+                      return;
+                  }
+              }
               start_game();
           }
      );
@@ -164,10 +173,16 @@ $(document).ready( function() {
         dataType : "json",
         timeout : 10000,
         success : function(data) {
-            //Writes pieces into the board with data returned from post request.
-            write_board(data["board"]);
-            //Starts game, attaches click events.
-            start_game();
+
+            if (data["finished"]) {
+                game_over(data["finished"]);
+            }
+            else {
+                //Writes pieces into the board with data returned from post request.
+                write_board(data["board"]);
+                //Starts game, attaches click events.
+                start_game();
+            }
         },
         error : function(data) {
             console.log("ERROR Board not found.");
