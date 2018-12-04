@@ -1,4 +1,7 @@
 
+body {
+  text-align: center;
+}
 
 .c-piece {
   width: 80px;
@@ -8,7 +11,6 @@
   line-height: 82px;
   font-size: 40px;
   font-family: monospace;
-  font-color: black;
   cursor: pointer;
 }
 

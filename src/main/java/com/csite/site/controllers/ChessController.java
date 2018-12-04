@@ -21,7 +21,7 @@ import com.csite.site.repositories.GameRepository;
 @Controller
 @RequestMapping("/")
 public class ChessController{
-
+    
     private GameRepository gameRepo;
 
     public ChessController(GameRepository gameRepo) {
