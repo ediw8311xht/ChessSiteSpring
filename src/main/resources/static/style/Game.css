@@ -1,7 +1,6 @@
 
 
 .c-piece {
-<<<<<<< HEAD
   width: 80px;
   height: 80px;
   display: inline-block;
@@ -11,17 +10,6 @@
   font-family: monospace;
   font-color: black;
   cursor: pointer;
-=======
-    width: 80px;
-    height: 80px;
-    display: inline-block;
-    text-align: center;
-    line-height: 82px;
-    font-size: 40px;
-    font-family: monospace;
-    font-color: black;
-    cursor: select;
->>>>>>> 137d6db6fcc1e59dd8c8f04700453bdea82b0501
 }
 
 .c-row {
