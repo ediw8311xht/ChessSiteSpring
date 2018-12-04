@@ -106,6 +106,7 @@ function click_move(event) {
     let id_arr = $(event.currentTarget).attr("id").split("-");
 
     if (last_touch) {
+        $(event.currentTarget).removeClass("highlight-this");
         if (last_touch[0] === id_arr[2] && last_touch[1] === id_arr[3]) {
             last_touch = false;
         }
@@ -119,7 +120,8 @@ function click_move(event) {
         }
     }
     else {
-      last_touch = [id_arr[2], id_arr[3], $(event.currentTarget).html()];
+        $(event.currentTarget).addClass("highlight-this");
+        last_touch = [id_arr[2], id_arr[3], $(event.currentTarget).html()];
     }
 }
 
