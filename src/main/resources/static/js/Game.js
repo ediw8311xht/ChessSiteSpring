@@ -176,7 +176,9 @@ $(document).ready( function() {
         timeout : 10000,
         success : function(data) {
 
-            if (data["turn"] < 0) {
+            console.log("Turn: " + data["turn"]);
+            if (parseInt(data["turn"]) < 0) {
+
                 game_over(data["turn"]);
             }
             else {

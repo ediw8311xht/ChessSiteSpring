@@ -150,9 +150,10 @@ public class Game {
         invert_turn();
 
         if (is_checkmate()) {
+            System.out.println("ChechechekcHEKHEKFHEKFHEKFHKEFHEKFEF jump up fool.");
             turn = turn * -1;
         }
-        
+
         return true;
     }
 
