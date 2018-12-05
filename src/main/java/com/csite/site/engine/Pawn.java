@@ -24,6 +24,10 @@ public class Pawn extends Piece {
         int dx = new_posx - Position[1];
 
         //Checks for two move front
+        System.out.println("\nstart");
+        System.out.println(dy);
+        System.out.println(dx);
+        System.out.println("finish\n");
         if ((Color == 0 && dy == 2 && dx == 0 && Position[0] == 1 && board[3][new_posx] == null && board[4][new_posx] == null) ||
             (Color == 1 && dy == -2 && dx == 0 && Position[0] == 6 && board[5][new_posx] == null && board[4][new_posx] == null)) {
             return true;
