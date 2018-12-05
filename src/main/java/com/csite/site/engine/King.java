@@ -21,7 +21,7 @@ public class King extends Piece {
         if (ady > 1 || adx > 1) { return false; }
 
         //Check if capture is real.
-        if (board[new_posy][new_posx].Color == Color) { return false; }
+        if (board[new_posy][new_posx] != null && board[new_posy][new_posx].Color == Color) { return false; }
 
         return true;
     }
