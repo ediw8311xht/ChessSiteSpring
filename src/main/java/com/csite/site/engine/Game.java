@@ -6,8 +6,13 @@ public class Game {
     //Should be generated from GameRepository to ensure that Id is unique.
     // Id is not used by game engine itself.
     private String id;
+
     private Piece board[][] = new Piece[8][8];
-    private int turn; //value of 0 represents white, and 1 represents black. Turn should only be either 0 or 1.
+
+    //value of 0 represents white, and 1 represents black. Turn should only be either 0 or 1.
+    //value < 0 represents game over and -1 for white win and -1 for black win.
+    private int turn;
+
 
     public Game() {
         //Don't use this constructor. Only for testing.
@@ -50,6 +55,7 @@ public class Game {
     public int getTurn() {
         return this.turn;
     }
+
     //-------------------------------------------
 
     public void board_from_string(String str_pure) {
@@ -142,6 +148,11 @@ public class Game {
         board[n_posy][n_posx].update_position(n_posy, n_posx);
         board[posy][posx] = null;
         invert_turn();
+
+        if (is_checkmate()) {
+            turn = turn * -1;
+        }
+        
         return true;
     }
 

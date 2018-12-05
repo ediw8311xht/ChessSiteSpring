@@ -46,10 +46,6 @@ public class ChessControllerAjax {
         int im1[] = {Integer.parseInt(move1.split("")[0]), Integer.parseInt(move1.split("")[1])};
         int im2[] = {Integer.parseInt(move2.split("")[0]), Integer.parseInt(move2.split("")[1])};
 
-        System.out.println(move1.split("")[0]);
-        System.out.println(id);
-        System.out.println(move2);
-
         Game g = this.gameRepo.findOne(id);
         if (g.move_piece(im1[0], im1[1], im2[0], im2[1])) {
             this.gameRepo.updateGame(g);

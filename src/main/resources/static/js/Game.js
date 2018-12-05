@@ -10,6 +10,8 @@
 */
 
 function game_over(color) {
+    console.log("GAME OVER");
+    console.log(color + " : color");
     return 0;
 }
 
@@ -174,8 +176,8 @@ $(document).ready( function() {
         timeout : 10000,
         success : function(data) {
 
-            if (data["finished"]) {
-                game_over(data["finished"]);
+            if (data["turn"] < 0) {
+                game_over(data["turn"]);
             }
             else {
                 //Writes pieces into the board with data returned from post request.

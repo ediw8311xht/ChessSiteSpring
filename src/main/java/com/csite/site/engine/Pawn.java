@@ -12,11 +12,6 @@ public class Pawn extends Piece {
 
     }
 
-    public void update_position(int new_posy, int new_posx) {
-        Position[0] = new_posy;
-        Position[1] = new_posx;
-    }
-
     public boolean is_valid_move(Piece board[][], int new_posy, int new_posx) {
         if (!position_valid(new_posy, new_posx)) { return false; }
 
