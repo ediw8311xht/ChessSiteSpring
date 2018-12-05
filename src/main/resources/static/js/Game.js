@@ -15,7 +15,7 @@ function game_over(color) {
     if (color == -1) { color = "white"; }
     else { color = "black"; }
 
-    $(document.body).append("<div id='GameOver'>" + color + " wins</div>");
+    $("#topbar").append("<h1 id='gameOver'>" + color + " wins</h1>");
 }
 
 function create_board_spots() {

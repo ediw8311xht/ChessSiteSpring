@@ -60,3 +60,9 @@ body {
 .highlight-this {
     background-color: red;
 }
+
+#topbar h1 {
+  margin-left: 40px;
+  margin-right: 40px;
+  display: inline-block;
+}
