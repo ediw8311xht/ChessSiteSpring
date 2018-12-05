@@ -12,7 +12,10 @@
 function game_over(color) {
     console.log("GAME OVER");
     console.log(color + " : color");
-    return 0;
+    if (color == -1) { color = "white"; }
+    else { color = "black"; }
+
+    $(document.body).append("<div id='GameOver'>" + color + " wins</div>");
 }
 
 function create_board_spots() {
@@ -95,7 +98,7 @@ function on_submit_move() {
                   reverse_move();
               }
               else {
-                  if (data["finished"]) {
+                  if (data["turn"] < 0) {
                       game_over(data["finished"]);
                       return;
                   }
@@ -177,13 +180,13 @@ $(document).ready( function() {
         success : function(data) {
 
             console.log("Turn: " + data["turn"]);
+            //Writes pieces into the board with data returned from post request.
+            write_board(data["board"]);
             if (parseInt(data["turn"]) < 0) {
 
                 game_over(data["turn"]);
             }
             else {
-                //Writes pieces into the board with data returned from post request.
-                write_board(data["board"]);
                 //Starts game, attaches click events.
                 start_game();
             }
