@@ -9,6 +9,9 @@
 
 */
 
+var dict_pieces = {"p": "/images/black_pawn.png"};
+
+
 function game_over(color) {
     console.log("GAME OVER");
     console.log(color + " : color");
@@ -46,7 +49,7 @@ function write_board(string_board) {
               $("#chess-piece-" + i + "-" + j).html("&nbsp;");
             }
             else {
-              $("#chess-piece-" + i + "-" + j).html(b_arr[i][j]);
+              $("#chess-piece-" + i + "-" + j).html("<img src= '/images/black_pawn.png' >");
             }
         }
     }
