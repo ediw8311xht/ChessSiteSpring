@@ -9,7 +9,12 @@
 
 */
 
-var dict_pieces = {"p": "/images/black_pawn.png"};
+var dict_pieces = {"p": "/images/white_pawn.png",   "P": "/images/black_pawn.png",
+                   "k": "/images/white_king.png",   "K": "/images/black_king.png",
+                   "q": "/images/white_queen.png",  "Q": "/images/black_queen.png",
+                   "b": "/images/white_bishop.png", "B": "/images/black_bishop.png",
+                   "n": "/images/white_knight.png", "N": "/images/black_knight.png",
+                   "r": "/images/white_rook.png",   "R": "/images/black_rook.png"};
 
 
 function game_over(color) {
@@ -46,10 +51,11 @@ function write_board(string_board) {
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
             if (b_arr[i][j] == " " || b_arr[i][j] == ".") {
-              $("#chess-piece-" + i + "-" + j).html("&nbsp;");
+                $("#chess-piece-" + i + "-" + j).html("&nbsp;");
             }
             else {
-              $("#chess-piece-" + i + "-" + j).html("<img src= '/images/black_pawn.png' >");
+                console.log(dict_pieces[b_arr[i][j]]);
+                $("#chess-piece-" + i + "-" + j).html("<img src='" + dict_pieces[b_arr[i][j]] + "' >");
             }
         }
     }
