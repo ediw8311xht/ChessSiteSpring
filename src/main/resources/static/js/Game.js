@@ -18,6 +18,8 @@ var dict_pieces = {"p": "/images/white_pawn.png",   "P": "/images/black_pawn.png
 
 
 function game_over(color) {
+    $("#gameTurn").remove();
+
     console.log("GAME OVER");
     console.log(color + " : color");
     if (color == -1) { color = "white"; }
@@ -112,7 +114,8 @@ function on_submit_move() {
                       return;
                   }
               }
-              start_game();
+
+              start_game(parseInt(data["turn"]));
           }
      );
 }
@@ -120,7 +123,7 @@ function on_submit_move() {
 function on_cancel_move() {
     submit_cancel_toggle("off");
     reverse_move();
-    start_game();
+    start_game(-1);
 }
 
 function click_move(event) {
@@ -162,11 +165,19 @@ function submit_cancel_toggle(on_off) {
     }
 }
 
-function start_game() {
+function start_game(turn) {
     //Resets variables that are used to store move positions,
     //and attachs function to click event on chess pieces inside chessBoard.
     last_touch = false;
     current_touch = false;
+    if (turn != -1) {
+        if (turn == 0) {
+            $("#gameTurn").text("White's Turn.");
+        }
+        else if (turn == 1) {
+            $("#gameTurn").text("Black's Turn.");
+        }
+    }
     $(".c-piece").on("click", click_move);
 }
 
@@ -197,7 +208,7 @@ $(document).ready( function() {
             }
             else {
                 //Starts game, attaches click events.
-                start_game();
+                start_game(parseInt(data["turn"]));
             }
         },
         error : function(data) {
