@@ -22,8 +22,8 @@ function game_over(color) {
 
     console.log("GAME OVER");
     console.log(color + " : color");
-    if (color == -1) { color = "white"; }
-    else { color = "black"; }
+    if (color == -1) { color = "black"; }
+    else { color = "white"; }
 
     $("#topbar").append("<h1 id='gameOver'>" + color + " wins</h1>");
 }
@@ -110,7 +110,7 @@ function on_submit_move() {
               }
               else {
                   if (data["turn"] < 0) {
-                      game_over(data["finished"]);
+                      game_over(data["turn"]);
                       return;
                   }
               }

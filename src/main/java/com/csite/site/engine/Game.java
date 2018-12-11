@@ -10,7 +10,7 @@ public class Game {
     private Piece board[][] = new Piece[8][8];
 
     //value of 0 represents white, and 1 represents black. Turn should only be either 0 or 1.
-    //value < 0 represents game over and -1 for white win and -2 for black win.
+    //value < 0 represents game over and -1 for black win and -2 for white win.
     private int turn;
 
 
