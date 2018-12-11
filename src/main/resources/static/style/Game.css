@@ -1,22 +1,25 @@
 
 body {
-  text-align: center;
+    padding-top: 2vh;
+    text-align: center;
+    height: 100vh;
+    background: linear-gradient(#b92b27, #1565c0);
 }
 
 .c-piece {
-  width: 80px;
-  height: 80px;
-  display: inline-block;
-  text-align: center;
-  line-height: 82px;
-  font-size: 40px;
-  font-family: monospace;
-  cursor: pointer;
-  vertical-align: middle;
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    text-align: center;
+    line-height: 82px;
+    font-size: 40px;
+    font-family: monospace;
+    cursor: pointer;
+    vertical-align: middle;
 }
 
 .c-piece img{
-  vertical-align: middle;
+    vertical-align: middle;
 }
 
 .c-row {
@@ -70,4 +73,5 @@ body {
   margin-left: 40px;
   margin-right: 40px;
   display: inline-block;
+  font-family: Helvetica;
 }
