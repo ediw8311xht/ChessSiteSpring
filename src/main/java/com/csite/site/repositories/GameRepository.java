@@ -1,13 +1,15 @@
 package com.csite.site.repositories;
 
-import org.springframework.dao.EmptyResultDataAccessException;
+import java.lang.Math;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import java.lang.Math;
+
 
 import com.csite.site.engine.Game;
 
@@ -38,18 +40,18 @@ public class GameRepository {
         if (findOne(game.getId()) != null) {
             return null;
         }
-        jdbc.update("INSERT INTO Game (id, board, turn) VALUES (?, ?, ?)",
-                    game.getId(), game.getBoard(), game.getTurn());
+        jdbc.update("INSERT INTO Game (id, board, turn, moves) VALUES (?, ?, ?, ?)",
+                    game.getId(), game.getBoard(), game.getTurn(), game.getMoves());
         return game;
     }
 
     public void updateGame(Game game) {
-        jdbc.update("UPDATE game SET board='" + game.getBoard() + "', turn=" + Integer.toString(game.getTurn()) + " WHERE id='" + game.getId() + "';");
+        jdbc.update("UPDATE game SET board='" + game.getBoard() + "', turn=" + Integer.toString(game.getTurn()) + ", moves='" + game.getMoves() + "' WHERE id='" + game.getId() + "';");
     }
 
     public Game findOne(String id) {
         try {
-            return jdbc.queryForObject("SELECT id, board, turn FROM Game WHERE id = ?", this::mapRowToGame, id);
+            return jdbc.queryForObject("SELECT id, board, turn, moves FROM Game WHERE id = ?", this::mapRowToGame, id);
         } catch (EmptyResultDataAccessException e) {
             System.out.println("No result found for that query.");
             return null;
@@ -58,7 +60,7 @@ public class GameRepository {
 
     private Game mapRowToGame(ResultSet rs, int rowNum) throws SQLException {
         if (!rs.isBeforeFirst()) {
-            return new Game(rs.getString("id"), rs.getString("board"), rs.getInt("turn"));
+            return new Game(rs.getString("id"), rs.getString("board"), rs.getString("moves"), rs.getInt("turn"));
         }
         else {
             System.out.println("No results found");
