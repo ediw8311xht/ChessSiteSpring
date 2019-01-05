@@ -186,6 +186,32 @@ public class Game {
 
     public boolean valid_move(int posy, int posx, int n_posy, int n_posx, boolean u_check) {
         if (board[posy][posx] == null || board[posy][posx].Color != turn || (posy == n_posy && posx == n_posx)) { return false; }
+        if (board[posy][posx].to_string().toLowerCase().equals("p")) {
+            if (this.moves.size() >= 1) {
+                String past_move = this.moves.get(this.moves.size() - 1);
+                if (Math.abs(posy - n_posy) == 1 && Math.abs(posx - n_posx) == 1 && board[n_posy][n_posx] == null &&
+                    past_move.substring(0, 1).toLowerCase().equals("p"))
+                {
+                    System.out.println("HHHaaaaaaaa");
+                    //49 == 1, 97 == 'a'.
+                    int pm_1x = (int) past_move.charAt(1) - 'a'; int pm_1y = Integer.parseInt(past_move.substring(2, 3)); int pm_2y = Integer.parseInt(past_move.substring(5, 6));
+                    System.out.printf("|-%c-%d-%d-%d-|\nadfadfadfadfaf\n", past_move.charAt(1), pm_1x, pm_1y, pm_2y);
+                    if (Math.abs(pm_1y - pm_2y) == 2 && n_posy == ((pm_2y + pm_1y) / 2) && pm_1x == n_posx) {
+                        //En passant is valid.
+                        this.board[n_posy][n_posx] = this.board[pm_2y][pm_1x]; this.board[pm_2y][pm_1x] = null;
+                        this.board[n_posy][n_posx].update_position(n_posy, n_posx);
+                        if (!undo_check(posy, posx, n_posy, n_posx)) {
+                            return true;
+                        }
+                        else {
+                            this.board[n_posy][n_posx] = null; this.board[pm_2y][pm_1x] = this.board[n_posy][n_posx];
+                            this.board[pm_2y][pm_1x].update_position(pm_2y, pm_1x);
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
         if (!board[posy][posx].is_valid_move(board, n_posy, n_posx)) { return false; }
         if ( u_check) { return !undo_check(posy, posx, n_posy, n_posx); }
 
