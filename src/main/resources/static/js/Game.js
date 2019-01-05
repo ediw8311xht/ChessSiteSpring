@@ -109,10 +109,12 @@ function on_submit_move() {
                   reverse_move();
               }
               else {
+                  write_board(data["board"]);
                   if (data["turn"] < 0) {
                       game_over(data["turn"]);
                       return;
                   }
+
               }
 
               start_game(parseInt(data["turn"]));

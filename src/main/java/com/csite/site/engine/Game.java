@@ -198,16 +198,23 @@ public class Game {
                     System.out.printf("|-%c-%d-%d-%d-|\nadfadfadfadfaf\n", past_move.charAt(1), pm_1x, pm_1y, pm_2y);
                     if (Math.abs(pm_1y - pm_2y) == 2 && n_posy == ((pm_2y + pm_1y) / 2) && pm_1x == n_posx) {
                         //En passant is valid.
-                        this.board[n_posy][n_posx] = this.board[pm_2y][pm_1x]; this.board[pm_2y][pm_1x] = null;
+                        System.out.printf("\naa bb cc ::    %d %d\n", pm_2y, pm_1x);
+                        this.board[n_posy][n_posx] = this.board[pm_2y][pm_1x];
+                        this.board[pm_2y][pm_1x] = null;
+                        System.out.println(this.getBoard());
                         this.board[n_posy][n_posx].update_position(n_posy, n_posx);
+                        return true;
+                        /*
                         if (!undo_check(posy, posx, n_posy, n_posx)) {
                             return true;
                         }
                         else {
+                            System.out.println("zzzzzzzxczxczxczqqwe1231938akjzc81248hhasdf");
                             this.board[n_posy][n_posx] = null; this.board[pm_2y][pm_1x] = this.board[n_posy][n_posx];
                             this.board[pm_2y][pm_1x].update_position(pm_2y, pm_1x);
                             return false;
                         }
+                        */
                     }
                 }
             }
@@ -247,6 +254,8 @@ public class Game {
             else if (turn == 1) {turn = -2; }
         }
 
+        System.out.println("");
+        System.out.println(this.getBoard());
         //Valid Move
         return true;
     }
