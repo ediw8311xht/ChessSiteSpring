@@ -137,7 +137,7 @@ public class Game {
     public boolean is_checkmate() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (board[i][j] != null && board[i][j].Color == turn) {
+                if (this.board[i][j] != null && this.board[i][j].Color == turn) {
                     for (int k = 0; k < 8; k++) {
                         for (int c = 0; c < 8; c++) {
                             if (valid_move(i, j, k, c, true)) {
@@ -153,18 +153,18 @@ public class Game {
 
     public boolean undo_check(int posy, int posx, int new_posy, int new_posx) {
         //Move piece.
-        Piece old_spot = board[new_posy][new_posx];
-        board[new_posy][new_posx] = board[posy][posx];
-        board[posy][posx] = null;
-        board[new_posy][new_posx].update_position(new_posy, new_posx);
+        Piece old_spot = this.board[new_posy][new_posx];
+        this.board[new_posy][new_posx] = this.board[posy][posx];
+        this.board[posy][posx] = null;
+        this.board[new_posy][new_posx].update_position(new_posy, new_posx);
 
         //Get if that color is still in check.
         boolean checked = is_check();
 
         //undo move.
-        board[posy][posx] = board[new_posy][new_posx];
-        board[new_posy][new_posx] = old_spot;
-        board[posy][posx].update_position(posy, posx);
+        this.board[posy][posx] = this.board[new_posy][new_posx];
+        this.board[new_posy][new_posx] = old_spot;
+        this.board[posy][posx].update_position(posy, posx);
 
         return checked;
     }
@@ -185,18 +185,14 @@ public class Game {
     }
 
     public boolean valid_move(int posy, int posx, int n_posy, int n_posx, boolean u_check) {
-        System.out.println("HERE HERE HERE HERE HERE HERE HERE HERE");
-        System.out.println(board[posy][posx]);
-        System.out.println("HERE HERE HERE HERE HERE HERE HERE HERE");
-        if (board[posy][posx] == null || board[posy][posx].Color != turn || (posy == n_posy && posx == n_posx)) { return false; }
-        if (board[posy][posx].to_string().toLowerCase().equals("p")) {
+        if (this.board[posy][posx] == null || this.board[posy][posx].Color != turn || (posy == n_posy && posx == n_posx)) { return false; }
+        if (this.board[posy][posx].to_string().toLowerCase().equals("p")) {
             //Checks for pawn move.
             if (this.moves.size() >= 1) {
                 String past_move = this.moves.get(this.moves.size() - 1);
                 if (Math.abs(posy - n_posy) == 1 && Math.abs(posx - n_posx) == 1 && board[n_posy][n_posx] == null &&
                     past_move.substring(0, 1).toLowerCase().equals("p"))
                 {
-                    System.out.println("HHHaaaaaaaa");
                     //49 == 1, 97 == 'a'.
                     int pm_1x = (int) past_move.charAt(1) - 'a'; int pm_1y = Integer.parseInt(past_move.substring(2, 3)); int pm_2y = Integer.parseInt(past_move.substring(5, 6));
                     System.out.printf("|-%c-%d-%d-%d-|\nadfadfadfadfaf\n", past_move.charAt(1), pm_1x, pm_1y, pm_2y);
@@ -237,19 +233,19 @@ public class Game {
         }
 
         //Add move to this.moves
-        String table[] = {"a", "b", "c", "d", "e", "f", "g"};
-        String str_move = board[posy][posx].to_string() + table[posx] + Integer.toString(posy);
+        String table[] = {"a", "b", "c", "d", "e", "f", "g", "h"};
+        String str_move = this.board[posy][posx].to_string() + table[posx] + Integer.toString(posy);
 
-        if (board[n_posy][n_posx] == null) {    str_move += ".";                                }
-        else                               {    str_move += board[n_posy][n_posx].to_string();  }
+        if (this.board[n_posy][n_posx] == null) {    str_move += ".";                                }
+        else                               {    str_move += this.board[n_posy][n_posx].to_string();  }
 
         str_move += table[n_posx] + Integer.toString(n_posy);
         this.moves.add(str_move);
 
         //Update Board
-        board[n_posy][n_posx] = board[posy][posx];
-        board[n_posy][n_posx].update_position(n_posy, n_posx);
-        board[posy][posx] = null;
+        this.board[n_posy][n_posx] = this.board[posy][posx];
+        this.board[n_posy][n_posx].update_position(n_posy, n_posx);
+        this.board[posy][posx] = null;
         invert_turn();
 
         //Check if it is checkmate
