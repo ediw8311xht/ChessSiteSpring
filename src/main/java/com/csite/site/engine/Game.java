@@ -185,8 +185,12 @@ public class Game {
     }
 
     public boolean valid_move(int posy, int posx, int n_posy, int n_posx, boolean u_check) {
+        System.out.println("HERE HERE HERE HERE HERE HERE HERE HERE");
+        System.out.println(board[posy][posx]);
+        System.out.println("HERE HERE HERE HERE HERE HERE HERE HERE");
         if (board[posy][posx] == null || board[posy][posx].Color != turn || (posy == n_posy && posx == n_posx)) { return false; }
         if (board[posy][posx].to_string().toLowerCase().equals("p")) {
+            //Checks for pawn move.
             if (this.moves.size() >= 1) {
                 String past_move = this.moves.get(this.moves.size() - 1);
                 if (Math.abs(posy - n_posy) == 1 && Math.abs(posx - n_posx) == 1 && board[n_posy][n_posx] == null &&
