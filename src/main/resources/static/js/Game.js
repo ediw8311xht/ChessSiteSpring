@@ -35,10 +35,10 @@ function create_board_spots() {
         $("#chessBoard").append("<div class='c-row' id='chess-row-" + i + "' ></div>");
         for (let j = 0; j < 8; j++) {
             if ((i + j) % 2 == 0) {
-                $("#chess-row-" + i).append("<div class='c-piece light-brown-background' id='chess-piece-" + i + "-" + j + "' >&nbsp;</div>");
+                $("#chess-row-" + i).append("<div class='c-piece dark-brown-background' id='chess-piece-" + i + "-" + j + "' >&nbsp;</div>");
             }
             else {
-                $("#chess-row-" + i).append("<div class='c-piece dark-brown-background' id='chess-piece-" + i + "-" + j + "' >&nbsp;</div>");
+                $("#chess-row-" + i).append("<div class='c-piece light-brown-background' id='chess-piece-" + i + "-" + j + "' >&nbsp;</div>");
             }
 
         }
