@@ -39,17 +39,17 @@ public class ChessController{
         String id = this.gameRepo.makeRandomId();
         Game new_game = new Game(id);
         this.gameRepo.save(new_game);
-        return new ModelAndView("redirect:/Game?id=" + id);
+        return new ModelAndView("redirect:/chess/Game?id=" + id);
     }
 
     @PostMapping("/getChessById")
     public ModelAndView getChessGamePOST(@RequestParam("id") String id) {
         Game g = gameRepo.findOne(id);
         if (g == null) {
-            return new ModelAndView("redirect:/Error");
+            return new ModelAndView("redirect:/chess/error");
         }
         else {
-            return new ModelAndView("redirect:/Game?id=" + id);
+            return new ModelAndView("redirect:/chess/Game?id=" + id);
         }
     }
 
