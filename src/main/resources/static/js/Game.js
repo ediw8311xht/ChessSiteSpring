@@ -9,12 +9,12 @@
 
 */
 
-var dict_pieces = {"p": "/images/white_pawn.png",   "P": "/images/black_pawn.png",
-                   "k": "/images/white_king.png",   "K": "/images/black_king.png",
-                   "q": "/images/white_queen.png",  "Q": "/images/black_queen.png",
-                   "b": "/images/white_bishop.png", "B": "/images/black_bishop.png",
-                   "n": "/images/white_knight.png", "N": "/images/black_knight.png",
-                   "r": "/images/white_rook.png",   "R": "/images/black_rook.png"};
+var dict_pieces = {"p": "/chess/images/white_pawn.png",   "P": "/chess/images/black_pawn.png",
+                   "k": "/chess/images/white_king.png",   "K": "/chess/images/black_king.png",
+                   "q": "/chess/images/white_queen.png",  "Q": "/chess/images/black_queen.png",
+                   "b": "/chess/images/white_bishop.png", "B": "/chess/images/black_bishop.png",
+                   "n": "/chess/images/white_knight.png", "N": "/chess/images/black_knight.png",
+                   "r": "/chess/images/white_rook.png",   "R": "/chess/images/black_rook.png"};
 
 
 function game_over(color) {
@@ -97,7 +97,7 @@ function on_submit_move() {
     //This function sends get request to server.
     //It passes three parameters, "id", "move1", and "move2".
     //"id" is the id of the game and "move1" is the starting position of move and "move2" is ending position of move.
-    $.get("/ajax/movePiece?id=" + information["id"] +
+    $.get("/chess/ajax/movePiece?id=" + information["id"] +
           "&move1=" + last_touch[0].toString() + last_touch[1].toString() +
           "&move2=" + current_touch[0].toString() + current_touch[1].toString(),
           function(data) {
@@ -195,7 +195,7 @@ $(document).ready( function() {
     $.ajax({
         type : "POST",
         contentType : "application/json",
-        url : "/ajax/getChessById",
+        url : "/chess/ajax/getChessById",
         data : JSON.stringify(information),
         dataType : "json",
         timeout : 10000,

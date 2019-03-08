@@ -5,7 +5,7 @@ function getIdChess(event){
     $.ajax({
         type : "POST",
         contentType : "application/json",
-        url : "/ajax/getChessById",
+        url : "/chess/ajax/getChessById",
         data : JSON.stringify(information),
         dataType : "json",
         timeout : 10000,

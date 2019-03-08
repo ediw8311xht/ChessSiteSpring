@@ -8,7 +8,7 @@ $(document).ready(function() {
     $.ajax({
         type : "POST",
         contentType : "application/json",
-        url : "/ajax/makeNewChess",
+        url : "/chess/ajax/makeNewChess",
         data : JSON.stringify(information),
         dataType : "json",
         timeout : 10000,
