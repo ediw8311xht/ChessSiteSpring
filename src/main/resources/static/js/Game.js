@@ -9,12 +9,12 @@
 
 */
 
-var dict_pieces = {"p": "/chess/images/white_pawn.png",   "P": "/chess/images/black_pawn.png",
-                   "k": "/chess/images/white_king.png",   "K": "/chess/images/black_king.png",
-                   "q": "/chess/images/white_queen.png",  "Q": "/chess/images/black_queen.png",
-                   "b": "/chess/images/white_bishop.png", "B": "/chess/images/black_bishop.png",
-                   "n": "/chess/images/white_knight.png", "N": "/chess/images/black_knight.png",
-                   "r": "/chess/images/white_rook.png",   "R": "/chess/images/black_rook.png"};
+var dict_pieces = {"p": "../static/images/white_pawn.png",   "P": "../static/images/black_pawn.png",
+                   "k": "../static/images/white_king.png",   "K": "../static/images/black_king.png",
+                   "q": "../static/images/white_queen.png",  "Q": "../static/images/black_queen.png",
+                   "b": "../static/images/white_bishop.png", "B": "../static/images/black_bishop.png",
+                   "n": "../static/images/white_knight.png", "N": "../static/images/black_knight.png",
+                   "r": "../static/images/white_rook.png",   "R": "../static/images/black_rook.png"};
 
 
 function game_over(color) {
