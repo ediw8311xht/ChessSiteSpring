@@ -1,13 +1,11 @@
 package com.csite.site.repositories;
 
 import java.lang.Math;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 
@@ -46,7 +44,7 @@ public class GameRepository {
     }
 
     public void updateGame(Game game) {
-        jdbc.update("UPDATE game SET board='" + game.getBoard() + "', turn=" + Integer.toString(game.getTurn()) + ", moves='" + game.getMoves() + "' WHERE id='" + game.getId() + "';");
+        jdbc.update("UPDATE game SET board= ?, turn = ?, moves = ? WHERE id = ?", game.getBoard(), game.getTurn(), game.getMoves(), game.getId());
     }
 
     public Game findOne(String id) {
